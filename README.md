@@ -1,5 +1,6 @@
 # Key Changes:
 - Resolves the incompatible pointer type error in the  `clevo_xsm_platform_driver` by casting the `clevo_xsm_wmi_remove` function to `void *` in the `remove` callback.
+- Resolve the incompatible pointer type error in `clevo_xsm_wmi_notify` by updating the function to accept an `acpi_object union` instead of a `u32` value, but for now without properly handling of received `acpi_object`.
 
 ---
 

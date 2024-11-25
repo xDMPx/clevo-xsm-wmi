@@ -905,18 +905,25 @@ static struct kb_backlight_ops kb_8_color_ops = {
 	.init           = kb_8_color__init,
 };
 
-
-static void clevo_xsm_wmi_notify(u32 value, void *context)
+// Temporary solution, just to align with new handler signature
+// Further research and proper handling of `acpi_object` is needed
+// https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=e04e2b760ddbe3d7b283a05898c3a029085cd8cd
+static void clevo_xsm_wmi_notify(union acpi_object *data, void *context)
 {
 	static unsigned int report_cnt;
+    u32 value = data->integer.value;
+    if(data->type != ACPI_TYPE_INTEGER) {
+        CLEVO_XSM_INFO("Unexpected WMI event acpi_object %x\n", data->type);
+        CLEVO_XSM_INFO("Unexpected WMI event acpi_object value %x\n", value);
+        return;
+    }
 
-	u32 event;
-
-	if (value != 0xD0) {
+	/*if (value != 0xD0) {
 		CLEVO_XSM_INFO("Unexpected WMI event (%0#6x)\n", value);
 		return;
-	}
+	}*/
 
+	u32 event;
 	clevo_xsm_wmi_evaluate_wmbb_method(GET_EVENT, 0, &event);
 
 	switch (event) {
