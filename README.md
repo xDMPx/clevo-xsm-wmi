@@ -1,3 +1,13 @@
+# Key Changes:
+- Resolves the incompatible pointer type error in the  `clevo_xsm_platform_driver` by casting the `clevo_xsm_wmi_remove` function to `void *` in the `remove` callback.
+
+---
+
+**Disclaimer:**
+The remainder of this README contains the original, unaltered content from the upstream repository.
+
+---
+
 # The status and the future of TUXEDO / Clevo WMI
 Read this:
 https://bitbucket.org/tuxedocomputers/clevo-xsm-wmi/issues/44/the-status-and-the-future-of-tuxedo-clevo

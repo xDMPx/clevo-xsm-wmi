@@ -1002,8 +1002,11 @@ static int clevo_xsm_wmi_resume(struct platform_device *dev)
 	return 0;
 }
 
+// driver core ignores the error, return code can be safely ignored
+// clevo_xsm_wmi_remove allways return 0
+// https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=0edb555a65d1ef047a9805051c36922b52a38a9d
 static struct platform_driver clevo_xsm_platform_driver = {
-	.remove = clevo_xsm_wmi_remove,
+	.remove = (void *)clevo_xsm_wmi_remove,
 	.resume = clevo_xsm_wmi_resume,
 	.driver = {
 		.name  = CLEVO_XSM_DRIVER_NAME,
