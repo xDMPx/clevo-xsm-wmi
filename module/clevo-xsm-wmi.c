@@ -1421,7 +1421,18 @@ static int __init clevo_xsm_dmi_matched(const struct dmi_system_id *id)
 	return 1;
 }
 
+// Entry for Clevo N850EP(N8xxEP6)
 static struct dmi_system_id clevo_xsm_dmi_table[] __initdata = {
+    {
+		.ident = "Clevo N850EP",
+		.matches = {
+			DMI_MATCH(DMI_PRODUCT_NAME, "N8xxEP6"),
+		},
+		.callback = clevo_xsm_dmi_matched,
+		.driver_data = &kb_full_color_with_extra_ops,
+        // TODO: Veryfi if kb_full_color_ops or kb_8_color_ops might 
+        // be a more appropriate choice for this device
+	},
 	{
 		.ident = "Clevo P870DM",
 		.matches = {

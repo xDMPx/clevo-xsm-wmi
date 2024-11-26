@@ -1,7 +1,7 @@
 # Key Changes:
 - Resolves the incompatible pointer type error in the  `clevo_xsm_platform_driver` by casting the `clevo_xsm_wmi_remove` function to `void *` in the `remove` callback. This change is required for kernel version 6.11 and later. ([Fix](https://github.com/xDMPx/clevo-xsm-wmi/commit/5f981262dc40aacdb2fc7df43e0190461d588411))
-- Resolve the incompatible pointer type error in `clevo_xsm_wmi_notify` by updating the function to accept an `acpi_object union` instead of a `u32` value, but for now without properly handling of received `acpi_object`.  This change is required for kernel version 6.11 and later. ([Fix](https://github.com/xDMPx/clevo-xsm-wmi/commit/5f513d2386e7cbbf42f0a03924cc19ac2e52f8af))
-
+- Resolve the incompatible pointer type error in `clevo_xsm_wmi_notify` by updating the function to accept an `acpi_object union` instead of a `u32` value, but for now without properly handling of received `acpi_object`.  This change is required for kernel version 6.12 and later. ([Fix](https://github.com/xDMPx/clevo-xsm-wmi/commit/5f513d2386e7cbbf42f0a03924cc19ac2e52f8af))
+- Add entry for Clevo model N850EP (N8xxEP6). This entry is a copy of an P870DM entry with adjusted `indent` and `DMI_PRODUCT_NAME`. Currently, only the keyboard backlight controls have been verified to work, along with the hotkeys that manage the backlight.
 
 ---
 
